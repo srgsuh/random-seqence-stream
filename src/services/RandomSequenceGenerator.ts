@@ -12,9 +12,11 @@ export interface RandomGenParams {
 
 export class RandomSequenceGenerator implements NumberSequenceGenerator{
     _generator: Generator<number>;
+    _isDone: false | true | undefined = false;
 
     constructor(private _count: number, private _min: number, private _max: number) {
         this._validateInput();
+        console.log(this._count, this._min, this._max);
         this._generator = this._generate();
     }
     protected _validateInput() {
@@ -29,11 +31,13 @@ export class RandomSequenceGenerator implements NumberSequenceGenerator{
         }
     }
 
-    next() {
-        return this._generator.next().value;
+    next(): number {
+        const {done, value} = this._generator.next();
+        this._isDone = done;
+        return value;
     }
 
     hasNext() {
-        return this._generator.next().done === false;
+        return !this._isDone;
     }
 }
