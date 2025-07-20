@@ -1,4 +1,5 @@
 import {NumberSequenceGenerator} from "../model/NumberSequenceGenerator.js";
+import logger from "../logger.ts";
 
 export interface GeneratorError extends Error {
     paramName: string;
@@ -16,7 +17,7 @@ export class RandomSequenceGenerator implements NumberSequenceGenerator{
 
     constructor(private _count: number, private _min: number, private _max: number) {
         this._validateInput();
-        console.log(this._count, this._min, this._max);
+        logger.debug('RSC params: %s, %s, %s', this._count, this._min, this._max);
         this._generator = this._generate();
     }
     protected _validateInput() {

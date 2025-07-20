@@ -1,3 +1,9 @@
 {
-
+  "logger": {
+    "level": "debug",
+    "console": {
+      "enabled": true,
+      "level": "debug"
+    }
+  }
 }
