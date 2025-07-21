@@ -1,5 +1,6 @@
 import {NumberSequence} from "../model/NumberSequence.ts";
 import logger from "../logger.ts";
+import _ from "lodash";
 
 export interface RandomGenParams {
     count: number;
@@ -42,6 +43,10 @@ export abstract class AbstractRandomSequence implements NumberSequence{
         if (message) {
             throw new GeneratorError(message);
         }
+    }
+
+    static random(min: number, max: number): number {
+        return _.random(min, max);
     }
 
     next(): number {
