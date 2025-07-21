@@ -1,4 +1,4 @@
 export interface NumberSequence {
-    next(): number;
+    next(): number | null;
     hasNext(): boolean;
 }

@@ -1,7 +1,6 @@
+import {RandomFn} from "./RandomSequenceFactory.ts";
 import {AbstractRandomSequence, RandomGenParams} from "./AbstractRandomSequence.ts";
 import _ from "lodash";
-
-
 
 export class SimpleRandomSequence extends AbstractRandomSequence{
     constructor(params: RandomGenParams) {

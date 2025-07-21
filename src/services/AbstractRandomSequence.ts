@@ -7,34 +7,48 @@ export interface RandomGenParams {
     max: number;
 }
 
-export class GeneratorError extends Error {
-    paramName: keyof RandomGenParams;
+export class GeneratorError extends Error {}
 
-    constructor(paramName: keyof RandomGenParams, message: string) {
-        super(message);
-        this.paramName = paramName;
-    }
-}
+type testFn = (p: RandomGenParams) => boolean;
 
-export class AbstractRandomSequence implements NumberSequence{
+const CHECKS: {test: testFn, message: string}[] = [
+    {
+        test: (p) => Object.values(p).some(
+            (value) => !Number.isInteger(value)
+        ),
+        message: `All parameters must be valid integers.`
+    },
+    {
+        test: ({count})=> (count <= 0),
+        message: "Parameter count must be positive"
+    },
+    {
+        test: ({min, max})=> (min > max),
+        message: "Parameter min cannot be greater than parameter max"
+    },
+]
+
+export abstract class AbstractRandomSequence implements NumberSequence{
     private _generator: Generator<number>;
-    private _isDone: false | true | undefined = false;
+    private _isDone: boolean = false;
 
     protected constructor(params: RandomGenParams, generator: Generator<number>) {
-        this._validateParameters(params);
+        AbstractRandomSequence._validateParameters(params);
         this._generator = generator;
     }
 
-    protected _validateParameters(params: RandomGenParams) {
-        if (params.count < 0) {
-            throw new GeneratorError("count", "Count must be greater than 0");
+    private static _validateParameters(params: RandomGenParams) {
+        const message = CHECKS.find((check) => check.test(params))?.message;
+        if (message) {
+            throw new GeneratorError(message);
         }
     }
 
     next(): number {
         const {done, value} = this._generator.next();
         logger.debug(`Next value: ${value}, done: ${done}`);
-        return value;
+        this._isDone = done ?? false;
+        return value ?? null;
     }
 
     hasNext() {
