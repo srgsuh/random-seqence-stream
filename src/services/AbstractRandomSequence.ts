@@ -8,7 +8,7 @@ export interface RandomGenParams {
     max: number;
 }
 
-export class GeneratorError extends Error {}
+export class RandomSequenceError extends Error {}
 
 type testFn = (p: RandomGenParams) => boolean;
 
@@ -41,7 +41,7 @@ export abstract class AbstractRandomSequence implements NumberSequence{
     private static _validateParameters(params: RandomGenParams) {
         const message = CHECKS.find((check) => check.test(params))?.message;
         if (message) {
-            throw new GeneratorError(message);
+            throw new RandomSequenceError(message);
         }
     }
 
