@@ -1,19 +1,16 @@
 import {Readable} from "node:stream";
 import {NumberSequenceGenerator} from "../model/NumberSequenceGenerator.js";
 import {RandomSequenceGenerator} from "./RandomSequenceGenerator.js";
+import {RandomGeneratorFactory} from "./RandomGeneratorFactory.js";
 
 export class RandomSequenceStream extends Readable{
-    private _generator: NumberSequenceGenerator;
+    private _sequence: NumberSequenceGenerator;
     constructor(private _count: number, private _min: number, private _max: number) {
         super();
-        this._generator = new RandomSequenceGenerator(_count, _min, _max);
+        this._sequence = RandomGeneratorFactory.createGenerator({count: _count, min: _min, max: _max, isUnique: false});
     }
     _read() {
-        if (this._generator.hasNext()) {
-            this.push(`${this._generator.next()}\n`, 'utf8');
-        }
-        else {
-            this.push(null);
-        }
+        const value = this._sequence.next();
+        this.push(value? value.toString() : null, "utf-8");
     }
 }
