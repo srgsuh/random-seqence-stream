@@ -1,11 +1,11 @@
 import {RandomSequenceStream} from "./src/services/RandomSequenceStream.js";
 import logger from "./src/logger.js";
+import {getConfigParams} from "./src/config_params.js";
 
-const stream = new RandomSequenceStream(
-    {count: 10, min: 1, max: 100, isUnique: true}
-);
+const streamOptions = getConfigParams();
 
-// stream.pipe(process.stdout);
+const stream = new RandomSequenceStream(streamOptions);
+
 stream.on("data", (data) => {
     logger.info(data);
 })

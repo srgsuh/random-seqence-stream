@@ -2,7 +2,7 @@ import {Readable} from "node:stream";
 import {NumberSequence} from "../model/NumberSequence.ts";
 import {RandomSequenceFactory} from "./RandomSequenceFactory.ts";
 
-interface RandomSequenceStreamOptions {
+export interface RandomSequenceStreamOptions {
     count: number;
     min: number;
     max: number;

@@ -1,6 +1,5 @@
 import {AbstractRandomSequence, RandomGenParams} from "./AbstractRandomSequence.ts";
-import _ from "lodash";
-import logger from "../logger.js";
+import logger from "../logger.ts";
 
 export class SimpleRandomSequence extends AbstractRandomSequence{
     constructor(params: RandomGenParams) {
