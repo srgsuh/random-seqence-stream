@@ -1,4 +1,4 @@
-export interface NumberSequenceGenerator {
+export interface NumberSequence {
     next(): number;
     hasNext(): boolean;
 }

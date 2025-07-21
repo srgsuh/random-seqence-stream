@@ -1,5 +1,5 @@
-import {NumberSequenceGenerator} from "../model/NumberSequenceGenerator.js";
-import logger from "../logger.js";
+import {NumberSequence} from "../model/NumberSequence.ts";
+import logger from "../logger.ts";
 
 export interface RandomGenParams {
     count: number;
@@ -16,7 +16,7 @@ export class GeneratorError extends Error {
     }
 }
 
-export class AbstractRandomGenerator implements NumberSequenceGenerator{
+export class AbstractRandomSequence implements NumberSequence{
     private _generator: Generator<number>;
     private _isDone: false | true | undefined = false;
 
