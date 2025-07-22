@@ -1,27 +1,23 @@
 import {createLogger, format, transports} from "winston";
-import config from "config";
-
-const loggerConfig = config.get<any>("logger");
+import {getConfigValue} from "./config_params.js";
 
 const logTransports = [];
 
-if (loggerConfig.console?.enabled) {
-    logTransports.push(new transports.Console({
-        level: loggerConfig.console.level,
-        format: format.combine(
-            format.colorize(),
-            format.json(),
-            format.splat(),
-            format.printf(({ level, message }) => {
-                return `[${level}]: ${message}`;
-            })
-        )
-    }));
+if (getConfigValue<boolean>("logger.console", false)) {
+    logTransports.push(new transports.Console());
 }
 
 const logger = createLogger({
+    level: getConfigValue<string>("logger.level", "info"),
     transports: logTransports,
-    level: loggerConfig.level
+    format: format.combine(
+        format.colorize(),
+        format.json(),
+        format.splat(),
+        format.printf(({ level, message }) => {
+            return `[${level}]: ${message}`;
+        })
+    )
 })
 
 export default logger;
