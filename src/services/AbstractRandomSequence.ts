@@ -17,7 +17,7 @@ const CHECKS: {test: testFn, message: string}[] = [
         test: (p) => Object.values(p).some(
             (value) => !Number.isInteger(value)
         ),
-        message: `All parameters must be valid integers.`
+        message: `All parameters must be valid integers`
     },
     {
         test: ({count})=> (count <= 0),

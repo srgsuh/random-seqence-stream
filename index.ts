@@ -17,7 +17,7 @@ try {
 }
 catch (error) {
     if (error instanceof RandomSequenceError) {
-        console.error(`Error error.message`);
+        console.error(`${error.message}. Check the "random_sequence" section of your configuration.`);
     }
     else {
         throw error;

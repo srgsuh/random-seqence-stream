@@ -43,7 +43,7 @@ export class UniqueRandomSequence extends AbstractRandomSequence{
 
     private static _validate({count, min, max}: RandomGenParams) {
         if (count > max - min + 1) {
-            throw new RandomSequenceError("Count cannot be greater than max - min + 1");
+            throw new RandomSequenceError(`It's impossible to generate ${count} in the range [${min}, ${max}]`);
         }
     }
 }
