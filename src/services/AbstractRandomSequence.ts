@@ -31,7 +31,6 @@ const CHECKS: {test: testFn, message: string}[] = [
 
 export abstract class AbstractRandomSequence implements NumberSequence{
     private _generator: Generator<number>;
-    private _isDone: boolean = false;
 
     protected constructor(params: RandomGenParams, generator: Generator<number>) {
         AbstractRandomSequence._validateParameters(params);
@@ -52,11 +51,6 @@ export abstract class AbstractRandomSequence implements NumberSequence{
     next(): number {
         const {done, value} = this._generator.next();
         logger.debug(`Sequence emit next value: ${value}, done: ${done}`);
-        this._isDone = done ?? false;
         return value ?? null;
-    }
-
-    hasNext() {
-        return !this._isDone;
     }
 }
