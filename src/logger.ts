@@ -1,5 +1,5 @@
 import {createLogger, format, transports} from "winston";
-import {getConfigValue} from "./config_params.js";
+import {getConfigValue} from "./config_params.ts";
 
 const logTransports = [];
 

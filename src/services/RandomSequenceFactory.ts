@@ -1,6 +1,6 @@
 import {NumberSequence} from "../model/NumberSequence.ts";
 import {SimpleRandomSequence} from "./SimpleRandomSequence.ts";
-import {UniqueRandomSequence} from "./UniqueRandomSequence.js";
+import {UniqueRandomSequence} from "./UniqueRandomSequence.ts";
 
 export interface RandomGenParams {
     count: number;

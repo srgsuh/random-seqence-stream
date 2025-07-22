@@ -1,7 +1,6 @@
 import {Readable} from "node:stream";
 import {NumberSequence} from "../model/NumberSequence.ts";
 import {RandomSequenceFactory} from "./RandomSequenceFactory.ts";
-import logger from "../logger.ts";
 
 const DEFAULT_STREAM_OPTIONS = {
     min: Number.MIN_SAFE_INTEGER,

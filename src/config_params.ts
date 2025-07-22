@@ -7,7 +7,7 @@ export interface ApplicationParameters {
     max: number;
 }
 
-export class ConfigError extends Error {};
+export class ConfigError extends Error {}
 
 const DEFAULT_COUNT = 7;
 const DEFAULT_MIN = 1;

@@ -1,5 +1,4 @@
 import {RandomSequenceStream} from "./src/services/RandomSequenceStream.ts";
-import logger from "./src/logger.ts";
 import {getParameters} from "./src/config_params.ts";
 import {RandomSequenceError} from "./src/services/AbstractRandomSequence.ts";
 

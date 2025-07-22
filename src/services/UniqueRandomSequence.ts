@@ -1,5 +1,5 @@
 import {AbstractRandomSequence, RandomSequenceError, RandomGenParams} from "./AbstractRandomSequence.ts";
-import logger from "../logger.js";
+import logger from "../logger.ts";
 
 const COUNT_RANGE_RATIO = 0.2;
 
