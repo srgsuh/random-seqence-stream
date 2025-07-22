@@ -51,7 +51,7 @@ export abstract class AbstractRandomSequence implements NumberSequence{
 
     next(): number {
         const {done, value} = this._generator.next();
-        logger.debug(`Next value: ${value}, done: ${done}`);
+        logger.debug(`Sequence emit next value: ${value}, done: ${done}`);
         this._isDone = done ?? false;
         return value ?? null;
     }

@@ -20,9 +20,10 @@ export class UniqueRandomSequence extends AbstractRandomSequence{
 
     private static *generateByShuffle({count, min, max}: RandomGenParams): Generator<number> {
         logger.debug("UniqueRandomSequence: generating using shuffling");
-        const values = Array.from({length: max - min + 1}, (_, i) => i + min);
+        const length = max - min + 1;
+        const values = Array.from({length}, (_, index) => index + min);
         for (let i = 0; i < count; i++) {
-            const randomIndex = AbstractRandomSequence.random(i, values.length - 1);
+            const randomIndex = AbstractRandomSequence.random(i, length - 1);
             [values[i], values[randomIndex]] = [values[randomIndex], values[i]];
             yield values[i];
         }

@@ -2,14 +2,12 @@
   "logger": {
     "level": "debug",
     "console": {
-      "enabled": true,
-      "level": "debug"
+      "enabled": true
     }
   },
   "random_sequence": {
-    "min": -10,
-    "max": -1,
-    "count": 10,
-    "unique": true
+    "min": 0,
+    "max": 1,
+    "count": 2
   }
 }

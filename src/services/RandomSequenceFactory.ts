@@ -11,7 +11,7 @@ export interface RandomGenParams {
 export type RandomFn = (min: number, max: number) => number;
 
 export class RandomSequenceFactory {
-    static createGenerator(params: RandomGenParams, isUnique: boolean): NumberSequence {
+    static buildSequence(params: RandomGenParams, isUnique: boolean): NumberSequence {
         return isUnique?
             new UniqueRandomSequence(params):
             new SimpleRandomSequence(params);
